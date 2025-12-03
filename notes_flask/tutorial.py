@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app=Flask(__name__)
 
-@app.route("/", method=["POST", "GET"])
+@app.route("/", methods=["POST", "GET"])
 def home():
     if request.method == "POST":
         return redirect(url_for("user", name=request.form["name"]))
@@ -10,7 +10,7 @@ def home():
 
 @app.route("/contact")
 def contact():
-    return "<p>Don't contact me, i do not wanna talk</p>"
+    return render_template("contact.html")
 
 @app.route("/<name>")
 def user(name):
